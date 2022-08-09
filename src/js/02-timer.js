@@ -42,27 +42,38 @@ function onStartClick() {
 
 function calcTime() {
     const dateNow = new Date();
-    let delta = Math.trunc((date - dateNow) / 1000);
-    const seconds = delta % 60;
-    delta = Math.trunc(delta / 60);
-    const minutes = delta % 60;
-    delta = Math.trunc(delta / 60);
-    const hours = delta % 60;
-    delta = Math.trunc(delta / 60);
-    const days = delta % 24;
+    const delta = convertMs(date - dateNow);
 
-    if (days + hours + minutes + seconds === 0) {
+
+    if (delta.days + delta.hours + delta.minutes + delta.seconds === 0) {
         clearInterval(timerId);
      }
 
-    const strDays = String(days).padStart(2, '0');
-    const strHours = String( hours).padStart(2, '0');
-    const strMinutes = String(minutes).padStart(2, '0');
-    const strSeconds = String(seconds).padStart(2, '0');
+    spDays.textContent = addLeadingZero(delta.days);
+    spHours.textContent = addLeadingZero(delta.hours);
+    spMinutes.textContent = addLeadingZero(delta.minutes);
+    spSeconds.textContent = addLeadingZero(delta.seconds);
+}
 
-    spDays.textContent = strDays;
-    spHours.textContent = strHours;
-    spMinutes.textContent = strMinutes;
-    spSeconds.textContent = strSeconds;
+function addLeadingZero(value) { 
+    return String(value).padStart(2, '0')
+}
 
+function convertMs(ms) {
+  // Number of milliseconds per unit of time
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  // Remaining days
+  const days = Math.floor(ms / day);
+  // Remaining hours
+  const hours = Math.floor((ms % day) / hour);
+  // Remaining minutes
+  const minutes = Math.floor(((ms % day) % hour) / minute);
+  // Remaining seconds
+  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+
+  return { days, hours, minutes, seconds };
 }
