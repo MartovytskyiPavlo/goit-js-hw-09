@@ -48,7 +48,8 @@ function calcTime() {
 
 
     if (delta.days + delta.hours + delta.minutes + delta.seconds === 0) {
-        clearInterval(timerId);
+      clearInterval(timerId);
+      Notiflix.Notify.success("Time out!");
      }
 
     spDays.textContent = addLeadingZero(delta.days);
