@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import Notiflix from 'notiflix';
 
 let timerId;
 let date;
@@ -22,10 +23,11 @@ const options = {
         const dateNow = new Date();
 
         if (date<dateNow) {
-            btStart.setAttribute('disabled', '');
-            window.alert("Please choose a date in the future");
+          btStart.setAttribute('disabled', '');
+          // window.alert("Please choose a date in the future");
+          Notiflix.Notify.failure("Please choose a date in the future");
         } else {
-            btStart.removeAttribute('disabled');
+          btStart.removeAttribute('disabled');
         }
 
     },
