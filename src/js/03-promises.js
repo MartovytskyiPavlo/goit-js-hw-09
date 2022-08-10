@@ -24,9 +24,9 @@ function createProcess(event) {
   const sStep = form.elements.step.value;
   const sAmount = form.elements.amount.value;
 
-  delay = Number(sDelay); 
-  step = Number(sStep);
-  amount = Number(sAmount);
+  let delay = Number(sDelay); 
+  const step = Number(sStep);
+  const amount = Number(sAmount);
 
   for(let position = 1; position <= amount; position++) {
     createPromise(position, delay)
