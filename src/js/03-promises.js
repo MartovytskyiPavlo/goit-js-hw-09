@@ -24,10 +24,6 @@ function createProcess(event) {
   const sStep = form.elements.step.value;
   const sAmount = form.elements.amount.value;
 
-  console.log(sDelay);
-  console.log(sStep);
-  console.log(sAmount);
-
   delay = Number(sDelay); 
   step = Number(sStep);
   amount = Number(sAmount);
