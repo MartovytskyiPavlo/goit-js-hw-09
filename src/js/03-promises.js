@@ -38,4 +38,8 @@ function createProcess(event) {
       });
     delay += step;
   }
+
+  form.elements.delay.value = null;
+  form.elements.step.value = null;
+  form.elements.amount.value = null;
 }
